@@ -668,6 +668,9 @@ function setup() {
 				visageAnims[0].y = 0;
 				visageAnims[0].w = 1000;
 				visageAnims[0].h = 800;
+
+				circle_hole3.color = color(37, 37, 39);
+				circle_hole3.setDrawable(true);
 				
 		},
 		onStep : (event) => {
@@ -692,6 +695,7 @@ function setup() {
 		onStop : (event) => {
 			console.log(event);
 				visageAnims[0].setDrawable(false);
+				circle_hole3.setDrawable(false);
 		
 		},
 	});
@@ -752,6 +756,7 @@ function setup() {
 			}
 
 			if(event.step == 172){
+				circle_hole4.color = color(255);
 				circle_hole4.setDrawable(true);
 			}
 
@@ -860,8 +865,8 @@ function setup() {
 
 	sequencer.registerSequence({
 		name : "ronds",
-		start : 255,
-		stop : 265,
+		start : 257,
+		stop : 267,
 		onStart : (event) => {
 			console.log(event);
 			bgColor = color(255);
@@ -893,6 +898,7 @@ function setup() {
 			circle_hole4.setDrawable(false);
 			isTourniquetDrawable = false;
 			isRectTourniquetDrawable = false;
+			bgColor = color(37, 37, 39)
 		
 		},
 	});
@@ -900,7 +906,7 @@ function setup() {
 	
 	sequencer.registerSequence({
 		name : "ronds3",
-		start : 275,
+		start : 274,
 		stop : 288,
 		steps:[1, 1+1/8, 1+2/8, 1+3/8, 1+4/8, 1+5/8, 1+6/8, 1+7/8],
 		onStart : (event) => {
@@ -1115,6 +1121,9 @@ function setup() {
 			mesAnims[0].w = 1500;
 			mesAnims[0].h = 800;
 			mesAnims[0].setDrawable(true);
+
+			circle_hole3.color = color(187, 184, 181);
+			circle_hole3.setDrawable(true);
 		},
 
 		onStep : (event) => {
@@ -1128,6 +1137,7 @@ function setup() {
 		onStop : (event) => {
 			console.log(event);
 			mesAnims[0].setDrawable(false);
+			circle_hole3.setDrawable(false);
 		},
 	
 	});
@@ -1145,6 +1155,8 @@ function setup() {
 			mesAnims2[0].w = 1500;
 			mesAnims2[0].h = 800;
 			mesAnims2[0].setDrawable(true);
+			circle_hole3.color = color(255, 0, 0);
+			circle_hole3.setDrawable(true);
 		},
 
 		onStep : (event) => {
@@ -1160,15 +1172,16 @@ function setup() {
 		onStop : (event) => {
 			console.log(event);
 			mesAnims2[0].setDrawable(false);
+			circle_hole3.setDrawable(false);
 		},
 	
 	});
 
 	sequencer.registerSequence({
 		name : "calinou",
-		start : 401,
-		stop : 420,
-		steps:[1, 1+1/12, 1+2/12, 1+3/12, 1+4/12, 1+5/12, 1+6/12, 1+7/12, 1+8/12, 1+9/12, 1+10/12, 1+11/12],
+		start : 402,
+		stop : 422,
+		steps:[1, 1+1/15, 1+2/15, 1+3/15, 1+4/15, 1+5/15, 1+6/15, 1+7/15, 1+8/15, 1+9/15, 1+10/15, 1+11/15, 1+12/15, 1+13/15, 1+14/15],
 		onStart : (event) => {
 			console.log(event);
 			calinouAnims[0].x = 0;
