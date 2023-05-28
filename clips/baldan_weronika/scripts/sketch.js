@@ -4,6 +4,7 @@ let sequencer;
 let bgColor;
 let isRectDrawable = false;
 let isTourniquetDrawable = false;
+let isRectTourniquetDrawable = false;
 
 let rectColor;
 let jaune;
@@ -182,7 +183,7 @@ function preload(){
 	calinouAnims.push(
 		new Animator({
 			imgPatternAddress : "./assets/calinou/Layer_[IMG_NUM].png",
-			imgCount : 66,
+			imgCount : 92,
 			firstImageNum : 0,
 			numberLength : 4,
 			x : 123,
@@ -863,26 +864,35 @@ function setup() {
 		stop : 265,
 		onStart : (event) => {
 			console.log(event);
-			circle_hole.color = color(rougeF);
-			circle_hole.setDrawable(true);
+			bgColor = color(255);
 
-			circle_hole2.color = color(rougeF);
-			circle_hole2.setDrawable(true);
-
-			circle_hole3.color = color(rougeF);
+			circle_hole3.color = color(0);
 			circle_hole3.setDrawable(true);
 
-			circle_hole4.color = color(rougeF);
+			circle_hole4.color = color(0);
 			circle_hole4.setDrawable(true);
+			isTourniquetDrawable = true;
+			isRectTourniquetDrawable = true;
+
 				
+		},
+
+		onStep : (event) => {
+
+			if(rectColor == grisF) { // Si rectColor est gris foncé, il devient rouge foncé, et s'il est Rouge Foncé, il devient gris foncé
+				rectColor = rougeF;
+			} else if(rectColor == rougeF) {
+				rectColor = grisF;
+			}
+			
 		},
 
 		onStop : (event) => {
 			console.log(event);
-			circle_hole.setDrawable(false);
-			circle_hole2.setDrawable(false);
 			circle_hole3.setDrawable(false);
 			circle_hole4.setDrawable(false);
+			isTourniquetDrawable = false;
+			isRectTourniquetDrawable = false;
 		
 		},
 	});
@@ -1157,8 +1167,8 @@ function setup() {
 	sequencer.registerSequence({
 		name : "calinou",
 		start : 401,
-		stop : 415,
-		steps:[1, 1+1/2],
+		stop : 420,
+		steps:[1, 1+1/12, 1+2/12, 1+3/12, 1+4/12, 1+5/12, 1+6/12, 1+7/12, 1+8/12, 1+9/12, 1+10/12, 1+11/12],
 		onStart : (event) => {
 			console.log(event);
 			calinouAnims[0].x = 0;
@@ -1166,11 +1176,14 @@ function setup() {
 			calinouAnims[0].w = 1500;
 			calinouAnims[0].h = 800;
 			calinouAnims[0].setDrawable(true);
+			bgColor = color(37, 37, 39);
 		},
 
 		onStep : (event) => {
 			console.log(event.amount);
 			calinouAnims[0].setCursor(event.amount);
+			let cursor = event.amount;
+			calinouAnims[0].setCursor(cursor);
 
 			
 		},
@@ -1206,6 +1219,16 @@ function draw() {
 		noStroke();
 		fill(187, 184, 181);
 		rect(0, 0, 150, 150);
+		pop();
+	}
+
+	if(isRectTourniquetDrawable) {
+		push();
+		translate(width / 2, height / 2);
+		rotate(millis() * 0.004);
+		noStroke();
+		fill(rectColor);
+		rect(0, 0, 300, 300);
 		pop();
 	}
 
